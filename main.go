@@ -17,6 +17,8 @@ func Run(ctx context.Context) error {
 		return runServer(ctx)
 	case "import":
 		return runImport(ctx)
+	case "init":
+		return runInit(ctx)
 	}
 	return nil
 }
