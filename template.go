@@ -1,12 +1,16 @@
 package tiarraview
 
 import (
+	"embed"
 	"io"
 	"net/url"
 	"text/template"
 
 	"github.com/labstack/echo/v4"
 )
+
+//go:embed views/*.html
+var viewFiles embed.FS
 
 type Template struct {
 	templates *template.Template
@@ -22,6 +26,6 @@ func newTemplates() *Template {
 	}
 	t := template.New("").Funcs(funcMap)
 	return &Template{
-		templates: template.Must(t.ParseGlob("views/*.html")),
+		templates: template.Must(t.ParseFS(viewFiles, "views/*.html")),
 	}
 }
