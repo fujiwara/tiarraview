@@ -2,7 +2,7 @@ package tiarraview
 
 type Config struct {
 	DBFile     string `name:"dbfile" default:"./db/database.sqlite3"`
-	SchemaFile string `name:"schemafile" default:"./db/schema.sql"`
+	SchemaFile string `name:"schemafile"`
 	Server     struct {
 		Addr string `name:"addr" default:":8080"`
 	} `cmd:"" help:"run web view server"`

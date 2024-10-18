@@ -2,6 +2,7 @@ package tiarraview
 
 import (
 	"context"
+	"embed"
 	"fmt"
 	"log/slog"
 	"net/http"
@@ -19,7 +20,7 @@ func runServer(ctx context.Context) error {
 	e := echo.New()
 	e.Renderer = newTemplates()
 	e.GET("/", rootHandler)
-	e.Static("/static", "static")
+	e.GET("/static/*", staticHandler)
 	e.GET("/:channel/", channelHandler)
 	e.GET("/:channel/:log_date", contentsHandler)
 	e.GET("/search", searchHandler)
@@ -194,4 +195,19 @@ func searchHandler(c echo.Context) error {
 		"Query":    c.QueryParam("search"),
 		"Channels": channels,
 	})
+}
+
+//go:embed static/*
+var staticFiles embed.FS
+
+func staticHandler(c echo.Context) error {
+	filePath := c.Param("*")
+	file, err := staticFiles.Open("static/" + filePath)
+	if err != nil {
+		return c.String(http.StatusNotFound, "File not found")
+	}
+	defer file.Close()
+
+	// ファイルの内容を返す
+	return c.Stream(http.StatusOK, "text/css", file)
 }

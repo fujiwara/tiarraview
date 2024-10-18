@@ -2,9 +2,13 @@ package tiarraview
 
 import (
 	"context"
+	_ "embed"
 	"log/slog"
 	"os"
 )
+
+//go:embed db/schema.sql
+var embeddedSchema []byte
 
 func runInit(_ context.Context) error {
 	err := os.Remove(config.DBFile)
@@ -15,12 +19,19 @@ func runInit(_ context.Context) error {
 	if err != nil {
 		return err
 	}
-	slog.Info("loading schema", "file", config.SchemaFile)
-	b, err := os.ReadFile(config.SchemaFile)
-	if err != nil {
-		return err
+	var sc []byte
+	if config.SchemaFile != "" {
+		slog.Info("loading schema", "file", config.SchemaFile)
+		b, err := os.ReadFile(config.SchemaFile)
+		if err != nil {
+			return err
+		}
+		sc = b
+	} else {
+		sc = embeddedSchema
 	}
-	_, err = db.Exec(string(b))
+	slog.Info("executing schema", "content", string(sc))
+	_, err = db.Exec(string(sc))
 	if err != nil {
 		return err
 	}
