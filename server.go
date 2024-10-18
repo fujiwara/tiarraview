@@ -19,6 +19,7 @@ func runServer(ctx context.Context) error {
 	e := echo.New()
 	e.Renderer = newTemplates()
 	e.GET("/", rootHandler)
+	e.Static("/static", "static")
 	e.GET("/:channel/", channelHandler)
 	e.GET("/:channel/:log_date", contentsHandler)
 	e.GET("/search", searchHandler)

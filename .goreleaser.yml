@@ -2,10 +2,12 @@ before:
   hooks:
     - go mod download
 builds:
-  - env:
-      - CGO_ENABLED=0
-    main: cmd/tiarraview/main.go
+  - main: cmd/tiarraview/main.go
     binary: tiarraview
+    flags:
+      - -tags=fts5
+    ldflags:
+      - -s -w
     goos:
       - linux
       - darwin
