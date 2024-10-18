@@ -1,0 +1,14 @@
+{{template "header" .}}
+
+<nav aria-label="breadcrumb">
+    <ul>
+        <li><a href="/">Home</a></li>
+    </ul>
+</nav>
+<ul>
+{{range .Channels}}
+    <li><a href="/{{. | urlEscape}}/">{{.}}</a></li>
+{{end}}
+</ul>
+
+{{template "footer" .}}

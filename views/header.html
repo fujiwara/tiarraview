@@ -1,0 +1,28 @@
+{{define "header"}}
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <title>{{.Title}}</title>
+</head>
+
+<body>
+    <main class="container">
+        <h1>{{.Title}}</h1>
+        <form action="/search" method="get">
+            <fieldset role="group">
+            <input type="search" name="search" value="{{.Query}}" placeholder="Search" aria-label="Search" />
+            <select name="channel">
+                <option value=""></option>
+                {{range .Channels}}
+                <option value="{{.}}">{{.}}</option>
+                {{end}}
+            </select>
+            <button type="submit">Search</button>
+            </fieldset>
+        </form>
+{{end}}

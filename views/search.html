@@ -1,0 +1,16 @@
+{{template "header" .}}
+
+<nav aria-label="breadcrumb">
+    <ul>
+        <li><a href="./">Home</a></li>
+    </ul>
+</nav>
+<ul>
+{{range .Logs}}
+<li><a href="{{.Channel | urlEscape}}/{{.LogDate}}">{{.Channel}}/{{.LogDate}}</a>
+    <pre style="white-space: pre-wrap; word-wrap: break-word; line-height: 1.4;">{{.Content}}</pre>
+</li>
+{{end}}
+</ul>
+
+{{template "footer" .}}
