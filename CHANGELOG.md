@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.0.3](https://github.com/fujiwara/tiarraview/compare/v0.0.2...v0.0.3) - 2024-11-11
+- Bump github.com/alecthomas/kong from 1.2.1 to 1.4.0 by @dependabot in https://github.com/fujiwara/tiarraview/pull/6
+- set cache-control header for static/ by @fujiwara in https://github.com/fujiwara/tiarraview/pull/7
+
 ## [v0.0.2](https://github.com/fujiwara/tiarraview/compare/v0.0.1...v0.0.2) - 2024-11-11
 - use trigram, etc by @fujiwara in https://github.com/fujiwara/tiarraview/pull/4
 
