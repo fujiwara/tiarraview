@@ -249,6 +249,6 @@ func staticHandler(c echo.Context) error {
 	}
 	defer file.Close()
 
-	// ファイルの内容を返す
+	c.Response().Header().Set("cache-control", "public, max-age=86400")
 	return c.Stream(http.StatusOK, "text/css", file)
 }
