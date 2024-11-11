@@ -2,9 +2,9 @@ package tiarraview
 
 import (
 	"embed"
+	"html/template"
 	"io"
 	"net/url"
-	"text/template"
 
 	"github.com/labstack/echo/v4"
 )

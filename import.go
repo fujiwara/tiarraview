@@ -65,21 +65,21 @@ func importLog(ctx context.Context, db *sql.Tx, path string, id int) error {
 
 	lines := strings.Split(string(b), "\n")
 	contents := make([]string, 0, len(lines))
-	ngrams := make([]string, 0, len(lines))
+	messages := make([]string, 0, len(lines))
 	for _, line := range lines {
-		content, ng := parseLogLine(line)
+		content, msg := parseLogLine(line)
 		if content == "" {
 			continue
 		}
-		contents = append(contents, line)
-		ngrams = append(ngrams, ng...)
+		contents = append(contents, content)
+		messages = append(messages, msg)
 	}
 	if len(contents) == 0 {
 		slog.Info("no contents", "file", path)
 		return nil
 	}
 
-	st1, err := db.PrepareContext(ctx, "INSERT INTO tiarra (id, channel, log_date, content) VALUES (?, ?, ?, ?)")
+	st1, err := db.PrepareContext(ctx, "INSERT INTO tiarra (rowid, channel, log_date, content) VALUES (?, ?, ?, ?)")
 	if err != nil {
 		return fmt.Errorf("failed to prepare statement: %w", err)
 	}
@@ -89,14 +89,14 @@ func importLog(ctx context.Context, db *sql.Tx, path string, id int) error {
 		return fmt.Errorf("failed to insert log: %w", err)
 	}
 
-	if len(ngrams) > 0 {
-		st2, err := db.PrepareContext(ctx, "INSERT INTO tiarra_fts (id, content) VALUES (?, ?)")
+	if len(messages) > 0 {
+		message := strings.Join(messages, "\n")
+		st2, err := db.PrepareContext(ctx, "INSERT INTO tiarra_fts (rowid, content) VALUES (?, ?)")
 		if err != nil {
 			return fmt.Errorf("failed to prepare statement fts: %w", err)
 		}
 		defer st2.Close()
-		ngs := strings.Join(ngrams, " ")
-		if _, err := st2.ExecContext(ctx, id, ngs); err != nil {
+		if _, err := st2.ExecContext(ctx, id, message); err != nil {
 			return fmt.Errorf("failed to insert fts: %w", err)
 		}
 	}
@@ -105,27 +105,17 @@ func importLog(ctx context.Context, db *sql.Tx, path string, id int) error {
 	return nil
 }
 
-func parseLogLine(line string) (string, []string) {
+func parseLogLine(line string) (string, string) {
 	p := strings.SplitN(line, " ", 2)
 	if len(p) != 2 {
-		return "", nil
+		return "", ""
 	}
 	if strings.HasPrefix(p[1], "<") || strings.HasPrefix(p[1], "(") {
 		bs := strings.SplitN(p[1], " ", 2)
 		if len(bs) != 2 {
-			return "", nil
+			return "", ""
 		}
-		return line, createNgrams(bs[1], 2)
+		return line, bs[1]
 	}
-	return "", nil
-}
-
-func createNgrams(input string, n int) []string {
-	runes := []rune(strings.ToLower(input))
-	var ngrams []string
-	for i := 0; i < len(runes)-n+1; i++ {
-		ng := string(runes[i : i+n])
-		ngrams = append(ngrams, ng)
-	}
-	return ngrams
+	return "", ""
 }

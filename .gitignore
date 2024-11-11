@@ -16,5 +16,5 @@
 
 .envrc
 tiarra/
-db/*.sqlite3
+db/*.sqlite3*
 tiarraview
