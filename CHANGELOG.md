@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.0.4](https://github.com/fujiwara/tiarraview/compare/v0.0.3...v0.0.4) - 2024-11-12
+- retry openDB by @fujiwara in https://github.com/fujiwara/tiarraview/pull/9
+
 ## [v0.0.3](https://github.com/fujiwara/tiarraview/compare/v0.0.2...v0.0.3) - 2024-11-11
 - Bump github.com/alecthomas/kong from 1.2.1 to 1.4.0 by @dependabot in https://github.com/fujiwara/tiarraview/pull/6
 - set cache-control header for static/ by @fujiwara in https://github.com/fujiwara/tiarraview/pull/7
