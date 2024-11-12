@@ -10,6 +10,7 @@ require (
 	github.com/mattn/go-sqlite3 v1.14.24
 	github.com/samber/lo v1.47.0
 	github.com/samber/slog-http v1.4.4
+	github.com/shogo82148/go-retry v1.3.1
 )
 
 require (

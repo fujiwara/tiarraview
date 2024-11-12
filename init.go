@@ -10,12 +10,12 @@ import (
 //go:embed db/schema.sql
 var embeddedSchema []byte
 
-func runInit(_ context.Context) error {
+func runInit(ctx context.Context) error {
 	err := os.Remove(config.DBFile)
 	if err != nil && !os.IsNotExist(err) {
 		return err
 	}
-	db, err := openDB()
+	db, err := openDB(ctx)
 	if err != nil {
 		return err
 	}

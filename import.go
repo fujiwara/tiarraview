@@ -12,7 +12,7 @@ import (
 )
 
 func runImport(ctx context.Context) error {
-	db, err := openDB()
+	db, err := openDB(ctx)
 	if err != nil {
 		return fmt.Errorf("failed to open DB: %w", err)
 	}
