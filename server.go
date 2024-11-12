@@ -45,7 +45,7 @@ func errorResponse(c echo.Context, status int, err error) error {
 
 func rootHandler(c echo.Context) error {
 	ctx := c.Request().Context()
-	db, err := openDB()
+	db, err := openDB(ctx)
 	if err != nil {
 		return errorResponse(c, http.StatusInternalServerError, fmt.Errorf("failed to open DB: %w", err))
 	}
@@ -82,7 +82,7 @@ func listChannels(ctx context.Context, db *sqlx.DB) ([]string, error) {
 func channelHandler(c echo.Context) error {
 	ctx := c.Request().Context()
 	channel, _ := url.PathUnescape(c.Param("channel"))
-	db, err := openDB()
+	db, err := openDB(ctx)
 	if err != nil {
 		return errorResponse(c, http.StatusInternalServerError, fmt.Errorf("failed to open DB: %w", err))
 	}
@@ -124,7 +124,7 @@ func contentsHandler(c echo.Context) error {
 	}
 	logDate := strings.TrimSuffix(c.Param("log_date"), ".txt")
 
-	db, err := openDB()
+	db, err := openDB(ctx)
 	if err != nil {
 		return errorResponse(c, http.StatusInternalServerError, fmt.Errorf("failed to open DB: %w", err))
 	}
@@ -159,7 +159,7 @@ func quoteMatch(s string) string {
 
 func searchHandler(c echo.Context) error {
 	ctx := c.Request().Context()
-	db, err := openDB()
+	db, err := openDB(ctx)
 	if err != nil {
 		return errorResponse(c, http.StatusInternalServerError, fmt.Errorf("failed to open DB: %w", err))
 	}
