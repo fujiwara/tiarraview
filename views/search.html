@@ -2,7 +2,7 @@
 
 <nav aria-label="breadcrumb">
     <ul>
-        <li><a href="/">Home</a></li>
+        <li><a href="{{.Root}}/">Home</a></li>
     </ul>
 </nav>
 
@@ -11,8 +11,9 @@
 {{end}}
 
 <ul>
+{{$root := .Root}}
 {{range .Logs}}
-<li><a href="/log/{{.Channel | urlEscape}}/{{.LogDate}}.txt">{{.Channel}}/{{.LogDate}}</a>
+<li><a href="{{$root}}/log/{{.Channel | urlEscape}}/{{.LogDate}}.txt">{{.Channel}}/{{.LogDate}}</a>
     <div style="background-color: #eee; padding: 1em; white-space: pre-wrap; word-wrap: break-word; line-height: 1.3;">{{.Content}}</div>
 </li>
 {{end}}

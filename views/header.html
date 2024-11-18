@@ -5,14 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
-    <link rel="stylesheet" href="/static/pico.min.css">
+    <link rel="stylesheet" href="{{.Root}}/static/pico.min.css">
     <title>{{.Title}}</title>
 </head>
 
 <body>
     <main class="container">
         <h1>{{.Title}}</h1>
-        <form action="/search" method="get">
+        <form action="{{.Root}}/search" method="get">
             <fieldset role="group">
             <input type="search" name="search" value="{{.Query}}" placeholder="Search" aria-label="Search" />
             <select name="channel">
