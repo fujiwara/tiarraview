@@ -22,7 +22,6 @@ import (
 var logger = slog.New(slog.NewJSONHandler(os.Stdout, nil))
 
 func runServer(ctx context.Context) error {
-
 	e := echo.New()
 	e.Renderer = newTemplates()
 	e.GET("/", rootHandler)
@@ -34,7 +33,7 @@ func runServer(ctx context.Context) error {
 	// add logger middleware
 	handler := sloghttp.Recovery(e)
 	handler = sloghttp.New(logger)(handler)
-	ridge.RunWithContext(ctx, config.Server.Addr, "/", handler)
+	ridge.RunWithContext(ctx, config.Server.Addr, config.Server.Root, handler)
 	return nil
 }
 

@@ -5,6 +5,7 @@ type Config struct {
 	SchemaFile string `name:"schemafile"`
 	Server     struct {
 		Addr string `name:"addr" default:":8080"`
+		Root string `name:"root" default:""`
 	} `cmd:"" help:"run web view server"`
 	Import struct {
 		SrcDir string `name:"src-dir" required:""`

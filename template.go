@@ -4,6 +4,7 @@ import (
 	"embed"
 	"html/template"
 	"io"
+	"log/slog"
 	"net/url"
 
 	"github.com/labstack/echo/v4"
@@ -17,7 +18,16 @@ type Template struct {
 }
 
 func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
-	return t.templates.ExecuteTemplate(w, name, data)
+	if m, ok := data.(map[string]interface{}); ok {
+		m["Root"] = config.Server.Root
+		data = m
+	}
+	err := t.templates.ExecuteTemplate(w, name, data)
+	if err != nil {
+		slog.Error("failed to render template", "error", err)
+		return err
+	}
+	return nil
 }
 
 func newTemplates() *Template {
