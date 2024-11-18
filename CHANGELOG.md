@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.0.5](https://github.com/fujiwara/tiarraview/compare/v0.0.4...v0.0.5) - 2024-11-18
+- add server --root option by @fujiwara in https://github.com/fujiwara/tiarraview/pull/11
+
 ## [v0.0.4](https://github.com/fujiwara/tiarraview/compare/v0.0.3...v0.0.4) - 2024-11-12
 - retry openDB by @fujiwara in https://github.com/fujiwara/tiarraview/pull/9
 
