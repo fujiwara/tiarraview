@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.0.8](https://github.com/fujiwara/tiarraview/compare/v0.0.7...v0.0.8) - 2024-11-26
+- fill Channel into search template. by @fujiwara in https://github.com/fujiwara/tiarraview/pull/17
+
 ## [v0.0.7](https://github.com/fujiwara/tiarraview/compare/v0.0.6...v0.0.7) - 2024-11-26
 - font-family: monospace by @fujiwara in https://github.com/fujiwara/tiarraview/pull/15
 
