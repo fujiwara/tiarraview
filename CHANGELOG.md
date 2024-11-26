@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.0.7](https://github.com/fujiwara/tiarraview/compare/v0.0.6...v0.0.7) - 2024-11-26
+- font-family: monospace by @fujiwara in https://github.com/fujiwara/tiarraview/pull/15
+
 ## [v0.0.6](https://github.com/fujiwara/tiarraview/compare/v0.0.5...v0.0.6) - 2024-11-18
 - ridge v0.12.1 by @fujiwara in https://github.com/fujiwara/tiarraview/pull/13
 
