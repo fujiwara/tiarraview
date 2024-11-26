@@ -7,6 +7,9 @@
         <li>{{.LogDate}}</li>
     </ul>
 </nav>
-<div style="background-color: #eee; padding: 1em; white-space: pre-wrap; word-wrap: break-word; line-height: 1.3;">{{.Content}}</div>
+<div
+    style="font-family: monospace; background-color: #eee; padding: 1em; white-space: pre-wrap; word-wrap: break-word; line-height: 1.4;">
+    {{- .Content -}}
+</div>
 
 {{template "footer" .}}
