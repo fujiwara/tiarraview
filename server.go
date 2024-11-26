@@ -221,6 +221,7 @@ func searchHandler(c echo.Context) error {
 		"Logs":     filteredLogs,
 		"Query":    c.QueryParam("search"),
 		"Channels": channels,
+		"Channel":  channel,
 	}
 	if utf8.RuneCountInString(q) <= 2 {
 		v["Warning"] = true
