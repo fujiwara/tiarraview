@@ -15,10 +15,11 @@
         <form action="{{.Root}}/search" method="get">
             <fieldset role="group">
             <input type="search" name="search" value="{{.Query}}" placeholder="Search" aria-label="Search" />
+            {{ $channel := .Channel }}
             <select name="channel">
                 <option value=""></option>
                 {{range .Channels}}
-                <option value="{{.}}">{{.}}</option>
+                <option value="{{.}}" {{if eq $channel . }}selected="selected" {{end}}>{{.}}</option>
                 {{end}}
             </select>
             <button type="submit">Search</button>
