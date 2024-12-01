@@ -3,7 +3,7 @@ module github.com/fujiwara/tiarraview
 go 1.21
 
 require (
-	github.com/alecthomas/kong v1.4.0
+	github.com/alecthomas/kong v1.5.0
 	github.com/fujiwara/ridge v0.12.1
 	github.com/jmoiron/sqlx v1.4.0
 	github.com/labstack/echo/v4 v4.12.0
