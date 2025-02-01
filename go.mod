@@ -8,7 +8,7 @@ require (
 	github.com/jmoiron/sqlx v1.4.0
 	github.com/labstack/echo/v4 v4.12.0
 	github.com/mattn/go-sqlite3 v1.14.24
-	github.com/samber/lo v1.47.0
+	github.com/samber/lo v1.49.1
 	github.com/samber/slog-http v1.4.4
 	github.com/shogo82148/go-retry v1.3.1
 )
@@ -27,5 +27,5 @@ require (
 	golang.org/x/crypto v0.28.0 // indirect
 	golang.org/x/net v0.30.0 // indirect
 	golang.org/x/sys v0.26.0 // indirect
-	golang.org/x/text v0.19.0 // indirect
+	golang.org/x/text v0.21.0 // indirect
 )
