@@ -9,7 +9,7 @@ require (
 	github.com/labstack/echo/v4 v4.12.0
 	github.com/mattn/go-sqlite3 v1.14.24
 	github.com/samber/lo v1.47.0
-	github.com/samber/slog-http v1.4.4
+	github.com/samber/slog-http v1.5.1
 	github.com/shogo82148/go-retry v1.3.1
 )
 
